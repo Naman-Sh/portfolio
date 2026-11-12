@@ -86,7 +86,6 @@
         '<p class="myth">' + esc(s.myth) + '</p>' +
         '<p class="rule">' + esc(s.sutra) + '</p></li>';
     }).join('');
-    $('#sutras-link').href = SITE.sutrasUrl;
 
     // Work list + detail
     var list = $('#work-list');
@@ -146,6 +145,7 @@
       '<span class="label">Project ' + pad(idx + 1) + ' &middot; ' + esc(p.type) + ' &middot; ' + esc(p.year) + '</span>' +
       '<h1>' + esc(p.title) + '</h1>' +
       '<p class="summary">' + esc(p.summary) + '</p>' +
+      (p.org ? '<p class="affil">' + esc(p.position || '') + (p.position ? ', ' : '') + esc(p.org) + '</p>' : '') +
       '<dl class="meta">' +
         '<div><dt>Role</dt><dd>' + esc(p.role) + '</dd></div>' +
         '<div><dt>Timeline</dt><dd>' + esc(p.when) + '</dd></div>' +
@@ -162,7 +162,9 @@
 
     var approach = p.approach.map(function (t) { return '<p class="copy">' + esc(t) + '</p>'; }).join('');
     $('#p-main').innerHTML =
-      '<div><h2>The problem</h2><p class="problem">' + esc(p.problem) + '</p></div>' +
+      '<div><h2>The problem</h2><p class="problem">' + esc(p.problem) + '</p>' +
+        (p.context ? '<p class="context">' + esc(p.context) + '</p>' : '') + '</div>' +
+      (p.scope ? '<div><h2>Scope</h2><ul class="scope">' + p.scope.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '') +
       '<div><h2>The approach</h2>' + approach +
         '<div class="pair">' + media(p.images.approach[0], 'r43') + media(p.images.approach[1], 'r43') + '</div></div>' +
       '<div><h2>What it left behind</h2><p class="copy">' + esc(p.output) + '</p>' +
@@ -171,7 +173,8 @@
     var strong = topTwo(p.scores);
     $('#p-side').innerHTML =
       '<p class="label">Sutra profile</p>' + radar(p.scores) +
-      '<p class="note">Strongest: ' + esc(strong[0]) + ', ' + esc(strong[1]) + '. Numbers refer to the six sutras on the homepage.</p>';
+      '<p class="note">Strongest: ' + esc(strong[0]) + ', ' + esc(strong[1]) + '. Numbers refer to the six sutras on the homepage.</p>' +
+      (p.tools ? '<div class="side-tools"><p class="label">Tools and methods</p><ul class="chips">' + p.tools.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '');
 
     $('#p-beats').innerHTML = p.beats.map(function (b) {
       var s = SUTRAS[b.sutra - 1];

@@ -1,6 +1,6 @@
 /* ==========================================================
    EDIT THIS FILE to change the site's content.
-   - SITE: your name, email and links
+   - SITE: your name and email
    - SUTRAS: the six sutras (shared across the site)
    - PROJECTS: up to 10 projects. Set show:false to hide one.
    Anything in [square brackets] is a placeholder to replace.
@@ -8,8 +8,7 @@
 
 window.SITE = {
   name: 'Naman Sharma',
-  email: 'hello@example.com',            // [YOUR EMAIL]
-  sutrasUrl: 'https://claude.ai/artifact/RGq9E45kG9iemQ48DfNncv'  // swap for your public sutras page
+  email: 'namansharma.iitr@gmail.com'
 };
 
 window.SUTRAS = [
@@ -60,25 +59,45 @@ window.SUTRAS = [
 
   P.push({
     slug: 'property-disposition', order: 1, show: true, type: 'Work',
-    title: 'City-owned property disposition', year: '[Year]',
-    summary: '[One-sentence summary: how an ad hoc process for selling city-owned property became a rule-based system.]',
-    role: '[Your role]', when: '[Dates]', where: '[City / agency]', team: '[Who you worked with]',
-    metrics: [
-      { value: '12x',  label: 'Growth in city-owned property sales' },
-      { value: '150+', label: 'Properties sold since January 2026' },
-      { value: '[#]',  label: '[Third metric, e.g. revenue or time to sale]' },
-      { value: '[#]',  label: '[Fourth metric]' }
+    title: 'Reforming the City-Owned Property Sales Program',
+    year: 'Jul 2024 \u2013 present',
+    org: 'City of Trenton, via the Bloomberg Center for Cities at Harvard University',
+    position: 'Innovation Lead, Office of the Mayor',
+    summary: 'Converted an ad hoc property disposition program into a repeatable, rules-based engine for neighborhood redevelopment, building the city\u2019s innovation capability from the ground up.',
+    role: 'Project Lead', when: 'Jul 2024 \u2013 present', where: 'Trenton, NJ', team: 'Partner: Real Estate division',
+    context: 'Trenton has 91,500 residents and a $280 million annual operating budget. As a municipal government, it had no dedicated data or innovation officer.',
+    scope: [
+      'Vacant property disposition for neighborhood redevelopment',
+      'Redevelopment compliance',
+      'Land bank feasibility',
+      'AI technology procurement',
+      'Innovation grants',
+      'University partnerships'
     ],
-    homeNote: '[One line on the rule set that replaced ad hoc dealmaking.]',
-    problem: '[What was broken: who was affected, what the old process looked like, and what it cost the city and residents.]',
-    approach: ['[Method: the rule set that replaced ad hoc dealmaking, how it was designed, and how it was tested. Two or three short paragraphs.]'],
-    output: '[Output: the playbook, dashboard or policy that outlasts you, and who runs it now.]',
-    scores: [2, 2, 3, 4, 3, 2],
-    beats: [{ sutra: 3, change: '[What you did differently, and what happened.]' }, { sutra: 4, change: '[What you did differently, and what happened.]' }],
+    metrics: [
+      { value: '12x',  label: 'Growth in annual city-owned property sales' },
+      { value: '150+', label: 'Properties sold since January 2026, up from about 12 a year' },
+      { value: '580',  label: 'Applications in one month, versus 400 over the prior five-month cycle' },
+      { value: '$75K', label: 'Saved annually on application intake and processing' }
+    ],
+    homeNote: 'A four-pillar framework (Data, Processes, Applications, Governance) turned discretionary sales into a rules-based engine.',
+    problem: 'City-owned property sales ran on ad hoc decisions: about 12 sales a year, 400 applications over a five-month cycle, and discretionary calls on who got what. With no data or innovation officer, there was no system to fix it.',
+    approach: [
+      'I led a redesign of the sales program around four pillars: Data, Processes, Applications and Governance.',
+      'Before buying anything, I validated user needs with personas, process maps and need-feature matrices, then tested no-cost minimum viable products (MVPs). That saved $75K annually on application intake and processing.',
+      'Multi-stakeholder workshops produced the process maps and a standard operating procedure (SOP) with transparent pricing and applicant-priority rubrics, replacing discretionary decisions with rules-based criteria.'
+    ],
+    output: 'A repeatable, rules-based property disposition engine: a centralized geospatial data platform, automated processes, and an SOP with transparent pricing and applicant-priority rubrics. It also built the city\u2019s innovation capability from the ground up.',
+    tools: ['Geospatial property data platform', 'Process mapping', 'User personas', 'Agile prototyping', 'Geospatial analysis', 'Generative AI', 'Dashboards'],
+    scores: [3, 4, 4, 3, 3, 3],
+    beats: [
+      { sutra: 2, change: 'Built personas, process maps and need-feature matrices to validate user needs before designing anything.' },
+      { sutra: 3, change: 'Tested no-cost MVPs before any purchase, saving $75K annually on application intake and processing.' }
+    ],
     images: {
-      hero: ph('Hero: map of parcels sold, or the sales dashboard'),
-      approach: [ph('The old process'), ph('The new rule-based flow')],
-      output: ph('Playbook page or dashboard')
+      hero: ph('Hero: map of properties sold, or the property sales dashboard'),
+      approach: [ph('The old, ad hoc process'), ph('The new rules-based process map')],
+      output: ph('Dashboard or standard operating procedure')
     }
   });
 

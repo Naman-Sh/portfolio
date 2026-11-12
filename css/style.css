@@ -240,6 +240,16 @@ section { scroll-margin-top: 24px; }
 .pn-all { text-align: center; margin-top: 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; }
 .pn-all a { display: inline-block; padding: 10px 16px; }
 
+/* ---------- project: context, scope, tools ---------- */
+.affil { margin-top: 16px; font-size: 15px; color: var(--muted); max-width: 760px; }
+.p-main .context { margin-top: 16px; font-size: 15px; line-height: 1.55; color: var(--muted); max-width: 68ch; }
+.scope { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; }
+.scope li { border-top: 1px solid var(--line); padding-top: 10px; font-size: 16px; line-height: 1.4; color: var(--body); }
+.side-tools { width: 100%; border-top: 1px solid var(--line); padding-top: 16px; margin-top: 4px; }
+.side-tools .label { margin-bottom: 10px; display: block; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.chips li { border: 1px solid var(--line); border-radius: 999px; padding: 5px 12px; font-size: 13px; line-height: 1.3; color: var(--body); }
+
 /* ---------- responsive ---------- */
 @media (max-width: 980px) {
   .sutras { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -256,6 +266,7 @@ section { scroll-margin-top: 24px; }
   .trio { grid-template-columns: 1fr; }
   .facts { grid-template-columns: 1fr; }
   .pair { grid-template-columns: 1fr; }
+  .scope { grid-template-columns: 1fr; }
   .beat { grid-template-columns: 1fr; }
   .beat .from { border-radius: 8px 8px 0 0; }
   .beat .to { border-radius: 0 0 8px 8px; }

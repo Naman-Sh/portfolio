@@ -19,11 +19,12 @@ assets/images/    Put your project images here
 
 Open `js/data.js`. Everything in `[square brackets]` is a placeholder.
 
-- **SITE**: your name, email, and the link to your sutras page.
+- **SITE**: your name and email.
 - **SUTRAS**: the six sutras (myth and principle). Shared by the homepage and every project.
 - **PROJECTS**: up to 10 entries. For each project you can set:
   - `title`, `type` (Work, Academic, Publication, Talk, Award), `year`, `summary`
   - `role`, `when`, `where`, `team`
+  - optional: `org`, `position`, `context`, `scope` (a list) and `tools` (a list). When present, they add an affiliation line, a context note, a Scope section and Tools chips.
   - `metrics`: four value + label pairs. The first two appear on the homepage card.
   - `problem`, `approach`, `output`
   - `scores`: six numbers from 0 to 4, one per sutra, which draw the radar chart
@@ -65,8 +66,6 @@ Buy a domain from any registrar, then add it under Settings > Pages > Custom dom
 
 ## Before you go live
 
-- Replace `hello@example.com` in `js/data.js` with your real email.
-- The sutras link points to a claude.ai page that is private until you share it. Publish the sutras page somewhere public (or share it) and update `sutrasUrl` in `js/data.js`.
 - Replace all placeholder text and the radar `scores`. The scores shipped here are illustrative.
 - The homepage hero figure and KPI numbers (12x, 150+, 100, 8+) are written directly in `index.html`, so edit them there.
 - Fonts load from Google Fonts. If you want zero third-party requests, download the three font families and host them in the repo.
