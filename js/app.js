@@ -4,6 +4,7 @@
 
   var SITE = window.SITE;
   var SUTRAS = window.SUTRAS;
+  var FAM = window.FAMILIES;
   var PROJECTS = window.PROJECTS.filter(function (p) { return p.show !== false; })
     .sort(function (a, b) { return a.order - b.order; });
 
@@ -15,6 +16,24 @@
   function $(sel, root) { return (root || document).querySelector(sel); }
   function pad(n) { return (n < 10 ? '0' : '') + n; }
   function projectUrl(p) { return 'project.html?p=' + encodeURIComponent(p.slug); }
+
+
+  /* ---------- two-level colour: family by type, shade by position in the family ---------- */
+  var ALL = window.PROJECTS.slice().sort(function (a, b) { return a.order - b.order; });
+  function familyOf(p) {
+    if (p.family && FAM[p.family]) return p.family;
+    var t = String(p.type || '').toLowerCase();
+    if (/award|competition/.test(t)) return 'award';
+    if (/talk|presentation|publication/.test(t)) return 'talk';
+    if (/academic/.test(t)) return 'academic';
+    return 'work';
+  }
+  function accent(p) {
+    var f = familyOf(p);
+    var mates = ALL.filter(function (q) { return familyOf(q) === f; });
+    var i = Math.max(0, mates.indexOf(p));
+    return FAM[f].shades[i % FAM[f].shades.length];
+  }
 
   /* ---------- radar chart (small) ---------- */
   function radar(scores) {
@@ -91,7 +110,8 @@
     var list = $('#work-list');
     var detail = $('#work-detail');
     list.innerHTML = PROJECTS.map(function (p, i) {
-      return '<li><button type="button" data-i="' + i + '" aria-pressed="false">' +
+      return '<li><button type="button" data-i="' + i + '" aria-pressed="false" style="--accent:' + accent(p) + '">' +
+        '<i class="dot" aria-hidden="true"></i>' +
         '<span class="num">' + pad(i + 1) + '</span>' +
         '<span class="ttl">' + esc(p.title) + '</span>' +
         '<span class="kind">' + esc(p.type) + '</span></button></li>';
@@ -103,6 +123,7 @@
       for (var b = 0; b < btns.length; b++) btns[b].setAttribute('aria-pressed', b === i ? 'true' : 'false');
       var m = p.metrics;
       var strong = topTwo(p.scores);
+      detail.style.setProperty('--accent', accent(p));
       detail.innerHTML =
         '<div class="detail-main">' +
           '<p class="label">Project ' + pad(i + 1) + ' &middot; ' + esc(p.type) + '</p>' +
@@ -125,6 +146,16 @@
         '</div>';
     }
 
+    // Legend for the colour families in use
+    var legend = $('#fam-legend');
+    if (legend) {
+      var used = [];
+      PROJECTS.forEach(function (p) { var f = familyOf(p); if (used.indexOf(f) < 0) used.push(f); });
+      legend.innerHTML = used.map(function (f) {
+        return '<li><i style="background:' + FAM[f].shades[0] + '" aria-hidden="true"></i>' + esc(FAM[f].label) + '</li>';
+      }).join('');
+    }
+
     list.addEventListener('click', function (e) {
       var btn = e.target.closest('button[data-i]');
       if (btn) show(parseInt(btn.getAttribute('data-i'), 10));
@@ -139,6 +170,10 @@
     for (var i = 0; i < PROJECTS.length; i++) { if (PROJECTS[i].slug === slug) idx = i; }
     var p = PROJECTS[idx];
     document.title = p.title + ' \u2014 ' + SITE.name;
+    var color = accent(p);
+    ['.p-head', '.hero-media', '.p-kpis', '.p-body', '.beats-block', '.pn'].forEach(function (sel) {
+      var el = $(sel); if (el) el.style.setProperty('--accent', color);
+    });
 
     $('#p-head').innerHTML =
       '<a class="crumb" href="index.html#work">&larr; Back to selected work</a>' +
@@ -192,8 +227,8 @@
       var ni = (idx + 1) % PROJECTS.length;
       $('#pn').innerHTML =
         '<div class="pn-grid">' +
-          '<a class="prev" href="' + projectUrl(prev) + '"><span class="dir">&larr; Previous project</span><span class="idx">' + pad(pi + 1) + '</span><span class="t">' + esc(prev.title) + '</span></a>' +
-          '<a class="next" href="' + projectUrl(next) + '"><span class="dir">Next project &rarr;</span><span class="idx">' + pad(ni + 1) + '</span><span class="t">' + esc(next.title) + '</span></a>' +
+          '<a class="prev" style="--accent:' + accent(prev) + '" href="' + projectUrl(prev) + '"><span class="dir">&larr; Previous project</span><span class="idx">' + pad(pi + 1) + '</span><span class="t">' + esc(prev.title) + '</span></a>' +
+          '<a class="next" style="--accent:' + accent(next) + '" href="' + projectUrl(next) + '"><span class="dir">Next project &rarr;</span><span class="idx">' + pad(ni + 1) + '</span><span class="t">' + esc(next.title) + '</span></a>' +
         '</div>' +
         '<p class="pn-all"><a href="index.html#work">All selected work</a></p>';
     }

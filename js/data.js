@@ -11,6 +11,18 @@ window.SITE = {
   email: 'namansharma.iitr@gmail.com'
 };
 
+/* Two-level colour: the project's TYPE picks the colour family, and each project in
+   that family gets the next shade, in display order. Edit the hex values to taste.
+   Types are matched by keyword: "award"/"competition" -> award, "talk"/"presentation"/
+   "publication" -> talk, "academic" -> academic, anything else -> work.
+   Add family: 'work' | 'academic' | 'award' | 'talk' to a project to override. */
+window.FAMILIES = {
+  work:     { label: 'Work',                 shades: ['#C6F432', '#A8EC4F', '#8BE36A', '#E4F76E', '#6FD98A', '#B5E27C'] },
+  academic: { label: 'Academic',             shades: ['#6CC4FF', '#8FA8FF', '#4FB0F0', '#A9C7FF', '#7BD0E8', '#9DB4FF'] },
+  award:    { label: 'Award / competition',  shades: ['#FFB547', '#FFC96B', '#FF9F5A', '#FFD98A', '#F5A83A', '#FFB27D'] },
+  talk:     { label: 'Talk / publication',   shades: ['#B49CFF', '#D98BF0', '#F78FC6', '#C7A8FF', '#E8A0E0', '#A98BF5'] }
+};
+
 window.SUTRAS = [
   { name: 'People first',        myth: 'Get the technology right and everything else will follow.',        sutra: 'People, processes, technology, in that order.' },
   { name: 'Know your users',     myth: 'Build the solution and all users will find their way.',            sutra: 'Distinguish your users and map their needs, individually.' },
@@ -212,11 +224,11 @@ window.SUTRAS = [
     [{ sutra: 4, change: '[What you did differently, and what happened.]' }, { sutra: 2, change: '[What you did differently, and what happened.]' }]));
   P.push(blank(6,  'Academic',    '[Second academic project title]',        'academic-project-2', [2, 3, 3, 2, 3, 2],
     [{ sutra: 3, change: '[What you did differently, and what happened.]' }, { sutra: 5, change: '[What you did differently, and what happened.]' }]));
-  P.push(blank(7,  'Publication', '[Publication title]',                    'publication-1',      [2, 2, 2, 3, 3, 3],
+  P.push(blank(7,  'Talk / Publication', '[Publication title]',                    'publication-1',      [2, 2, 2, 3, 3, 3],
     [{ sutra: 6, change: '[What you did differently, and what happened.]' }, { sutra: 1, change: '[What you did differently, and what happened.]' }]));
-  P.push(blank(8,  'Talk',        '[Talk title]',                           'talk-1',             [2, 3, 2, 2, 4, 3],
+  P.push(blank(8,  'Talk / Publication', '[Talk title]',                           'talk-1',             [2, 3, 2, 2, 4, 3],
     [{ sutra: 5, change: '[What you did differently, and what happened.]' }, { sutra: 4, change: '[What you did differently, and what happened.]' }]));
-  P.push(blank(9,  'Award',       '[Award name]',                           'award-1',            [3, 2, 3, 3, 2, 3],
+  P.push(blank(9,  'Award / Competition', '[Award name]',                           'award-1',            [3, 2, 3, 3, 2, 3],
     [{ sutra: 2, change: '[What you did differently, and what happened.]' }, { sutra: 6, change: '[What you did differently, and what happened.]' }]));
   P.push(blank(10, 'Work',        '[Work project 10 title]',                'work-project-10',    [3, 2, 2, 4, 3, 2],
     [{ sutra: 4, change: '[What you did differently, and what happened.]' }, { sutra: 1, change: '[What you did differently, and what happened.]' }]));
