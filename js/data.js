@@ -101,22 +101,112 @@ window.SUTRAS = [
     }
   });
 
-  var p2 = blank(2, 'Work', '100-city data capacity program', 'data-capacity-100-cities', [3, 3, 1, 3, 4, 4],
-    [{ sutra: 5, change: '[What you did differently, and what happened.]' }, { sutra: 6, change: '[What you did differently, and what happened.]' }]);
-  p2.metrics[0] = { value: '100', label: 'Cities with new data capability' };
-  p2.homeNote = '[One line on the cohort model and curriculum.]';
-  P.push(p2);
+  P.push({
+    slug: 'riverside-homelessness-framework', order: 3, show: true, type: 'Work',
+    title: 'Data-Driven Assessment Framework for Homelessness Reduction',
+    year: 'Jun \u2013 Aug 2023',
+    org: 'City of Riverside, via the Bloomberg Center for Cities at Harvard University',
+    position: 'Bloomberg Harvard Summer Fellow, Office of the Mayor',
+    summary: 'Established an outcome-based measurement framework for the city\u2019s homelessness response, and taught staff to distinguish outputs from outcomes, shifting the organization from tracking activity to managing impact.',
+    role: 'Lead', when: 'Jun \u2013 Aug 2023', where: 'Riverside, CA', team: 'Stakeholders: Mayor, Council, Police, Homelessness Task Force',
+    context: 'Riverside has 325,000 residents and a $306 million annual operating budget. Its homelessness strategy had ambiguous outcome metrics.',
+    scope: ['Homelessness Action Plan performance management', 'Municipal data governance'],
+    metrics: [
+      { value: '3',    label: 'Amendments to the city\u2019s Strategic Plan to overhaul municipal data governance' },
+      { value: '100+', label: 'City officials and residents reached through executive presentations' },
+      { value: '1',    label: 'Chief Data Officer role proposed, to scale data governance across city hall' },
+      { value: '3',    label: 'Frameworks taught to the Mayor\u2019s Office leadership team: PDIA, Theory of Change, Public Value' }
+    ],
+    homeNote: 'An outcome-based KPI framework and data governance reforms for the Homelessness Action Plan.',
+    problem: 'Riverside\u2019s homelessness strategy had ambiguous outcome metrics, so the city tracked activity rather than impact. Without strong data governance, it was hard to say what was working.',
+    approach: [
+      'I led three amendments to the city\u2019s Strategic Plan to overhaul municipal data governance, winning buy-in through executive presentations to the Mayor, Council, and 100+ city officials and residents.',
+      'I formulated a key performance indicator (KPI) framework with definitions, formulas and benchmarks drawn from peer California action plans, so the Homelessness Action Plan could be measured objectively. To ground it in evidence, I rode along with Police and Homelessness Task Force members to see street conditions firsthand and identify service-delivery challenges.',
+      'To make it last, I built a business case for a Chief Data Officer role and negotiated it across departments, and ran workshops on Problem-Driven Iterative Adaptation (PDIA), Theory of Change and the Public Value Framework for the Mayor\u2019s Office leadership team.'
+    ],
+    output: 'An outcome-based measurement framework for the city\u2019s homelessness response, three Strategic Plan amendments on data governance, a proposed Chief Data Officer role, and a leadership team trained to tell outputs from outcomes.',
+    tools: ['Comparative analysis', 'Policy writing', 'KPI design', 'Stakeholder interviews', 'PDIA', 'Theory of change'],
+    scores: [3, 4, 1, 4, 4, 3],
+    beats: [
+      { sutra: 2, change: 'Rode along with Police and Homelessness Task Force members to see street conditions firsthand, grounding recommendations in frontline evidence.' },
+      { sutra: 5, change: 'Won buy-in from the Mayor, Council and 100+ officials and residents, and negotiated a Chief Data Officer proposal across departments.' }
+    ],
+    images: {
+      hero: ph('Hero: the KPI framework or a ride-along photo'),
+      approach: [ph('Before: activity-based tracking'), ph('After: outcome-based KPI framework')],
+      output: ph('Strategic Plan amendment or leadership workshop')
+    }
+  });
 
-  var p3 = blank(3, 'Work', 'Lean design for broken programs', 'lean-program-repair', [3, 4, 4, 4, 2, 3],
-    [{ sutra: 2, change: '[What you did differently, and what happened.]' }, { sutra: 3, change: '[What you did differently, and what happened.]' }]);
-  p3.homeNote = 'Inversion thinking turns ad hoc processes into rule-based systems.';
-  p3.metrics[0] = { value: '[x]', label: '[Step-change result]' };
-  P.push(p3);
+  P.push({
+    slug: 'urban95-child-friendly-smart-cities', order: 2, show: true, type: 'Work',
+    title: 'DataSmart Urban95, Child-Friendly Smart Cities',
+    year: 'Jan 2021 \u2013 Jul 2022',
+    org: 'Government of India, Ministry of Housing and Urban Affairs',
+    position: 'Consultant, Data Analytics and Management Unit, Smart Cities Mission (SCM)',
+    summary: 'Pioneered data frameworks to measure the unmeasured (children, caregivers, informal workers) and trained 100 City Data Officers to embed them in policymaking, shifting how city governments discover the needs of latent constituents.',
+    role: 'Project Coordinator', when: 'Jan 2021 \u2013 Jul 2022', where: 'New Delhi, India', team: 'Team of 6. Partners: Van Leer Foundation, National Institute of Urban Affairs',
+    context: 'A national government flagship program covering 100 smart cities and 137 million people.',
+    scope: ['Child-friendly policy toolkits', 'India Urban Observatory', 'Open Data Portal', 'Emerging-technology strategy'],
+    metrics: [
+      { value: '100',   label: 'Smart cities with child-friendly, evidence-based policymaking embedded' },
+      { value: '8',     label: 'Data collection toolkits delivered, plus 2 indicator frameworks and 7 urban analytics dashboards' },
+      { value: '94',    label: 'Hours of urban analytics instruction, training 100 City Data Officers' },
+      { value: '$280K', label: 'US grant, delivered with a team of 6' }
+    ],
+    homeNote: 'Data frameworks to measure children, caregivers and informal workers, and 100 City Data Officers trained to use them.',
+    problem: 'City governments had little data on children, caregivers and informal workers, so the needs of these constituents stayed invisible to policymaking.',
+    approach: [
+      'I coordinated multi-partner delivery of a national program with the Van Leer Foundation and the National Institute of Urban Affairs, embedding child-friendly, evidence-based policymaking across 100 smart cities.',
+      'I led a six-member interdisciplinary team of researchers and consultants. Together we delivered 8 data collection toolkits, 2 indicator frameworks and 7 urban analytics dashboards for city policymakers.',
+      'So that cities could work without us, I designed and delivered 94 hours of urban analytics instruction that trained 100 City Data Officers to collect and analyze data independently.'
+    ],
+    output: '8 data collection toolkits, 2 indicator frameworks and 7 urban analytics dashboards, plus 100 trained City Data Officers who can collect and analyze data independently.',
+    tools: ['Project management', 'Research', 'Geospatial analysis', 'Indicator framework design', 'Dashboards', 'Training design', 'Grant reporting'],
+    scores: [3, 4, 2, 3, 3, 4],
+    beats: [
+      { sutra: 2, change: 'Built data frameworks to measure the unmeasured: children, caregivers and informal workers.' },
+      { sutra: 6, change: 'Trained 100 City Data Officers so cities could collect and analyze data on their own.' }
+    ],
+    images: {
+      hero: ph('Hero: an urban analytics dashboard or a toolkit cover'),
+      approach: [ph('A data collection toolkit'), ph('A City Data Officer training session')],
+      output: ph('An indicator framework or dashboard')
+    }
+  });
 
-  var p4 = blank(4, 'Work', 'AI-enabled public product', 'ai-public-product', [4, 3, 4, 3, 2, 2],
-    [{ sutra: 1, change: '[What you did differently, and what happened.]' }, { sutra: 2, change: '[What you did differently, and what happened.]' }]);
-  p4.homeNote = '[One line on the procurement and build approach.]';
-  P.push(p4);
+  P.push({
+    slug: 'policymind', order: 4, show: true, type: 'Academic',
+    title: 'PolicyMind: Agentic AI Policymaking Platform',
+    year: '2024',
+    org: 'AI Venture Studio, MIT Media Lab',
+    position: 'Policy and Product Design Lead',
+    summary: 'An AI-first SaaS platform for policymaking, taken from concept to six public sector pilots.',
+    role: 'Policy and Product Design Lead', when: '2024', where: 'AI Venture Studio, MIT Media Lab', team: 'Team of 4',
+    metrics: [
+      { value: '6',   label: 'Public sector pilots, including a national government and a UN agency' },
+      { value: 'NSF', label: 'Selected for the National Science Foundation I-Corps' },
+      { value: 'C10', label: 'Selected for the C10 Labs AI accelerator' },
+      { value: '4',   label: 'People on the team' }
+    ],
+    homeNote: 'An AI-first policymaking SaaS platform, from concept to six public sector pilots.',
+    problem: '[The policymaking problem PolicyMind set out to solve, and for whom.]',
+    approach: [
+      'I led end-to-end product design and prototyping of PolicyMind, from concept to delivery, integrating AI agents and iterating on product-market fit through continuous user testing.',
+      'Strategic partnerships turned the prototype into 6 public sector pilots, including a national government and a UN agency.'
+    ],
+    output: 'PolicyMind, an AI-first SaaS platform for policymaking, with 6 public sector pilots. It was selected for the National Science Foundation (NSF) I-Corps and the C10 Labs AI accelerator.',
+    scores: [3, 4, 3, 4, 2, 2],
+    beats: [
+      { sutra: 4, change: 'Iterated on product-market fit through continuous user testing while building.' },
+      { sutra: 3, change: 'Delivered 6 public sector pilots, including a national government and a UN agency, before scaling.' }
+    ],
+    images: {
+      hero: ph('Hero: the PolicyMind interface'),
+      approach: [ph('Early prototype'), ph('Product after user testing')],
+      output: ph('A pilot in use')
+    }
+  });
 
   P.push(blank(5,  'Academic',    '[Academic project title], Harvard / MIT', 'academic-project-1', [3, 3, 2, 3, 2, 2],
     [{ sutra: 4, change: '[What you did differently, and what happened.]' }, { sutra: 2, change: '[What you did differently, and what happened.]' }]));
