@@ -24,12 +24,18 @@ window.FAMILIES = {
 };
 
 window.SUTRAS = [
-  { name: 'People first',        myth: 'Get the technology right and everything else will follow.',        sutra: 'People, processes, technology, in that order.' },
-  { name: 'Know your users',     myth: 'Build the solution and all users will find their way.',            sutra: 'Distinguish your users and map their needs, individually.' },
-  { name: 'Small experiments',   myth: 'We can\u2019t afford to experiment. It\u2019s too risky.',          sutra: 'Build small versions. Break them before shipping.' },
-  { name: 'Learn while doing',   myth: 'Design it right with the experts, then leave it to God.',          sutra: 'Learning while doing is the only design process that works.' },
-  { name: 'Adaptive leadership', myth: 'Technical skills and motivation are enough to drive change.',      sutra: 'Technical skills without adaptive leadership is motion without progress.' },
-  { name: 'Ownership',           myth: 'Perfect it, secure buy-in, and push it to scale.',                 sutra: 'Sow ideas early, nurture patiently, let ownership grow.' }
+  { name: 'People first',        myth: 'Get the technology right and everything else will follow.',        sutra: 'People, processes, technology, in that order.',
+    meaning: 'Start with the people using the service and the process they go through. Choose technology last, and only for a need you have proven.' },
+  { name: 'Know your users',     myth: 'Build the solution and all users will find their way.',            sutra: 'Distinguish your users and map their needs, individually.',
+    meaning: 'Residents and staff are not one average user. Name the groups, talk to real people in each, and map their needs one by one.' },
+  { name: 'Small experiments',   myth: 'We can\u2019t afford to experiment. It\u2019s too risky.',          sutra: 'Build small versions. Break them before shipping.',
+    meaning: 'Test a cheap, rough version in front of real users early, so mistakes happen at small scale instead of at launch.' },
+  { name: 'Learn while doing',   myth: 'Design it right with the experts, then leave it to God.',          sutra: 'Learning while doing is the only design process that works.',
+    meaning: 'Deliver in short cycles and adjust as you learn. The plan is only a starting guess until it meets real conditions.' },
+  { name: 'Adaptive leadership', myth: 'Technical skills and motivation are enough to drive change.',      sutra: 'Technical skills without adaptive leadership is motion without progress.',
+    meaning: 'Skills and tools fix technical problems. Change also needs leaders who work through habits, fears and competing interests.' },
+  { name: 'Ownership',           myth: 'Perfect it, secure buy-in, and push it to scale.',                 sutra: 'Sow ideas early, nurture patiently, let ownership grow.',
+    meaning: 'Bring staff in from the first idea so they run and improve the change long after you have gone.' }
 ];
 
 /* ---------- PROJECTS ----------
@@ -511,7 +517,7 @@ window.SUTRAS = [
     "order": 8,
     "show": true,
     "type": "Academic",
-    "accent": "#5B8CFF",
+    "accent": "#7EA2D8",
     "title": "Lynn Pathways LLC: A $137M Workforce and Enterprise Plan",
     "year": "Jan \u2013 May 2023",
     "org": "Harvard Graduate School of Design, Core Urban Planning Studio II, Lynn: A Greater Gateway",

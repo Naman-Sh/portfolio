@@ -117,19 +117,12 @@
 
   /* ---------- HOME ---------- */
   function initHome() {
-    // Parcel figure: deterministic pattern
-    var parcels = $('#parcels');
-    var cells = '';
-    for (var i = 0; i < 60; i++) {
-      cells += '<i' + (((i * 7 + 3) % 5 === 0 || i % 11 === 4) ? ' class="sold"' : '') + '></i>';
-    }
-    parcels.innerHTML = cells;
-
     // Sutras
     $('#sutra-list').innerHTML = SUTRAS.map(function (s, i) {
       return '<li><span class="n">' + pad(i + 1) + '</span>' +
         '<p class="myth">' + esc(s.myth) + '</p>' +
-        '<p class="rule">' + esc(s.sutra) + '</p></li>';
+        '<p class="rule">' + esc(s.sutra) + '</p>' +
+        (s.meaning ? '<p class="meaning">' + esc(s.meaning) + '</p>' : '') + '</li>';
     }).join('');
 
     // Work list + detail
