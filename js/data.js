@@ -19,8 +19,8 @@ window.SITE = {
 window.FAMILIES = {
   work:     { label: 'Work',                 shades: ['#C6F432', '#A8EC4F', '#8BE36A', '#E4F76E', '#6FD98A', '#B5E27C'] },
   academic: { label: 'Academic',             shades: ['#6CC4FF', '#8FA8FF', '#4FB0F0', '#A9C7FF', '#7BD0E8', '#9DB4FF'] },
-  award:    { label: 'Award / competition',  shades: ['#FFB547', '#FFC96B', '#FF9F5A', '#FFD98A', '#F5A83A', '#FFB27D'] },
-  talk:     { label: 'Talk / publication',   shades: ['#B49CFF', '#D98BF0', '#F78FC6', '#C7A8FF', '#E8A0E0', '#A98BF5'] }
+  award:    { label: 'Award',  shades: ['#FFB547', '#FFC96B', '#FF9F5A', '#FFD98A', '#F5A83A', '#FFB27D'] },
+  talk:     { label: 'Public Talk',   shades: ['#B49CFF', '#D98BF0', '#F78FC6', '#C7A8FF', '#E8A0E0', '#A98BF5'] }
 };
 
 window.SUTRAS = [
@@ -511,7 +511,7 @@ window.SUTRAS = [
     "order": 8,
     "show": true,
     "type": "Academic",
-    "accent": "#FF4DB8",
+    "accent": "#5B8CFF",
     "title": "Lynn Pathways LLC: A $137M Workforce and Enterprise Plan",
     "year": "Jan \u2013 May 2023",
     "org": "Harvard Graduate School of Design, Core Urban Planning Studio II, Lynn: A Greater Gateway",

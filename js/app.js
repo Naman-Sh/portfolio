@@ -94,11 +94,14 @@
   /* escaped text, with **double asterisks** turned into bold */
   function rich(t) { return esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'); }
 
-  /* approach images: two 4:3 side by side; if any carries ratio 'r169' they stack at full width */
+  /* approach images: full width; two sit side by side (column widths follow each frame's
+     ratio so both have the same height), more than two form a 2-column gallery */
+  var RATIO = { r43: 4 / 3, r169: 16 / 9 };
   function approachMedia(items) {
-    var mixed = items.some(function (it) { return it.ratio && it.ratio !== 'r43'; });
     var html = items.map(function (it) { return media(it, it.ratio || 'r43'); }).join('');
-    return '<div class="' + (items.length > 2 ? 'gallery' : mixed ? 'stack' : 'pair') + '">' + html + '</div>';
+    if (items.length > 2) return '<div class="gallery">' + html + '</div>';
+    var cols = items.map(function (it) { return (RATIO[it.ratio || 'r43'] || 4 / 3).toFixed(4) + 'fr'; }).join(' ');
+    return '<div class="pair" style="grid-template-columns:' + cols + '">' + html + '</div>';
   }
 
   /* ---------- shared: contact button from SITE.email ---------- */
@@ -234,10 +237,12 @@
       '<div><h2>The problem</h2><p class="problem">' + esc(p.problem) + '</p>' +
         (p.context ? '<p class="context">' + esc(p.context) + '</p>' : '') + '</div>' +
       (p.scope ? '<div><h2>Scope</h2><ul class="scope">' + p.scope.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '') +
-      '<div><h2>The approach</h2>' + approach +
-        approachMedia(p.images.approach) + '</div>' +
-      '<div><h2>What it left behind</h2><p class="copy">' + esc(p.output) + '</p>' +
-        (p.images.output ? '<div class="single">' + media(p.images.output, 'r169') + '</div>' : '') + '</div>';
+      '<div><h2>The approach</h2>' + approach + '</div>';
+    // approach graphics run the full content width, under both columns
+    $('#p-wide').innerHTML = approachMedia(p.images.approach);
+    $('#p-after').innerHTML =
+      '<h2>What it left behind</h2><p class="copy">' + esc(p.output) + '</p>' +
+        (p.images.output ? '<div class="single">' + media(p.images.output, 'r169') + '</div>' : '');
 
     var strong = topTwo(p.scores);
     $('#p-side').innerHTML =

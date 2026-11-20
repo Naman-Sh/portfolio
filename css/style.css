@@ -224,9 +224,17 @@ section { scroll-margin-top: 24px; }
 .p-main .copy-list { margin: 12px 0 0; padding-left: 1.2em; font-size: 18px; line-height: 1.6; color: var(--body); max-width: 68ch; }
 .p-main .copy-list li::marker { color: var(--accent); }
 .p-main .copy-list + p.copy, .p-main p.copy + .copy-list { margin-top: 16px; }
-.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 24px; }
+.p-main { order: 1; }
+.p-side { order: 2; }
+.p-wide { order: 3; flex: 0 0 100%; min-width: 0; margin-top: -24px; }
+.p-wide:empty { display: none; }
+.p-after { order: 4; flex: 0 0 calc(100% - 356px); min-width: 0; margin-top: -8px; }
+.p-after h2 { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.p-after p.copy { font-size: 18px; line-height: 1.6; color: var(--body); max-width: 68ch; }
+.p-after .single { margin-top: 24px; }
+.pair { display: grid; gap: 16px; }
 .p-main .single { margin-top: 24px; }
-.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; margin-top: 24px; }
+.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
 .stack { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
 .p-side { flex: 0 1 300px; min-width: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .p-side .label { align-self: flex-start; }
@@ -276,7 +284,8 @@ section { scroll-margin-top: 24px; }
   .detail-radar { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; flex-basis: 100%; }
   .about-grid > .label, .about-grid > p, .trio { grid-column: 1 / -1; }
   .meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .p-side { flex-basis: 100%; }
+  .p-side { flex-basis: 100%; order: 5; }
+  .p-after { flex-basis: 100%; }
 }
 @media (max-width: 720px) {
   .kpis, .p-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -285,7 +294,7 @@ section { scroll-margin-top: 24px; }
   .sutras { grid-template-columns: 1fr; }
   .trio { grid-template-columns: 1fr; }
   .facts { grid-template-columns: 1fr; }
-  .pair, .gallery { grid-template-columns: 1fr; }
+  .pair, .gallery { grid-template-columns: 1fr !important; }
   .scope { grid-template-columns: 1fr; }
   .beat { grid-template-columns: 1fr; }
   .beat .from { border-radius: 8px 8px 0 0; }
