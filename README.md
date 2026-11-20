@@ -67,5 +67,5 @@ Buy a domain from any registrar, then add it under Settings > Pages > Custom dom
 ## Before you go live
 
 - Replace all placeholder text and the radar `scores`. The scores shipped here are illustrative.
-- The homepage hero figure and KPI numbers (12x, 150+, 100, 8+) are written directly in `index.html`, so edit them there.
+- The homepage hero figure and KPI numbers (~12 → 150+, 100, 6.5x, 8+ yrs.) are written directly in `index.html`, so edit them there.
 - Fonts load from Google Fonts. If you want zero third-party requests, download the three font families and host them in the repo.

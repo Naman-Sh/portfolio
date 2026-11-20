@@ -64,6 +64,13 @@
       labels + '</svg>';
   }
 
+  function strongLine(scores) {
+    var max = Math.max.apply(null, scores);
+    if (scores.every(function (v) { return v === max; })) return 'All six sutras at full depth';
+    var t = topTwo(scores);
+    return 'Strongest: ' + t[0] + ', ' + t[1];
+  }
+
   function topTwo(scores) {
     var order = scores.map(function (v, i) { return i; }).sort(function (a, b) { return scores[b] - scores[a] || a - b; });
     return order.slice(0, 2).map(function (i) { return pad(i + 1) + ' ' + SUTRAS[i].name; });
@@ -82,6 +89,16 @@
         (spec.caption ? '<figcaption>' + esc(spec.caption) + '</figcaption>' : '') + '</figure>';
     }
     return '<div class="frame ' + frameClass + ' placeholder" role="img" aria-label="Placeholder: ' + esc(spec.alt) + '"><span>[Image: ' + esc(spec.alt) + ']</span></div>';
+  }
+
+  /* escaped text, with **double asterisks** turned into bold */
+  function rich(t) { return esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'); }
+
+  /* approach images: two 4:3 side by side; if any carries ratio 'r169' they stack at full width */
+  function approachMedia(items) {
+    var mixed = items.some(function (it) { return it.ratio && it.ratio !== 'r43'; });
+    var html = items.map(function (it) { return media(it, it.ratio || 'r43'); }).join('');
+    return '<div class="' + (items.length > 2 ? 'gallery' : mixed ? 'stack' : 'pair') + '">' + html + '</div>';
   }
 
   /* ---------- shared: contact button from SITE.email ---------- */
@@ -135,8 +152,8 @@
           '<p class="label">Project ' + pad(i + 1) + ' &middot; ' + esc(p.type) + '</p>' +
           '<h3>' + esc(p.title) + '</h3>' +
           '<div class="tiles">' +
-            '<div class="tile"><strong>' + esc(m[0].value) + '</strong><span>' + esc(m[0].label) + '</span></div>' +
-            '<div class="tile"><strong>' + esc(m[1].value) + '</strong><span>' + esc(m[1].label) + '</span></div>' +
+            '<div class="tile"><strong' + (m[0].value.length > 6 ? ' class="long"' : '') + '>' + esc(m[0].value) + '</strong><span>' + esc(m[0].label) + '</span></div>' +
+            '<div class="tile"><strong' + (m[1].value.length > 6 ? ' class="long"' : '') + '>' + esc(m[1].value) + '</strong><span>' + esc(m[1].label) + '</span></div>' +
           '</div>' +
           '<dl class="facts">' +
             '<div><dt>Role</dt><dd>' + esc(p.role) + '</dd></div>' +
@@ -148,17 +165,23 @@
         '</div>' +
         '<div class="detail-radar">' +
           '<p class="label">Sutra profile</p>' + radar(p.scores) +
-          '<p class="strong">Strongest: ' + esc(strong[0]) + ', ' + esc(strong[1]) + '</p>' +
+          '<p class="strong">' + esc(strongLine(p.scores)) + '</p>' +
         '</div>';
     }
 
     // Legend for the colour families in use
     var legend = $('#fam-legend');
     if (legend) {
-      var used = [];
-      PROJECTS.forEach(function (p) { var f = familyOf(p); if (used.indexOf(f) < 0) used.push(f); });
-      legend.innerHTML = used.map(function (f) {
-        return '<li><i style="background:' + FAM[f].shades[0] + '" aria-hidden="true"></i>' + esc(FAM[f].label) + '</li>';
+      var groups = {}, order = [];
+      PROJECTS.forEach(function (p, i) {
+        var f = familyOf(p);
+        if (!groups[f]) { groups[f] = []; order.push(f); }
+        groups[f].push({ i: i, c: accent(p) });
+      });
+      legend.innerHTML = order.map(function (f) {
+        return '<li><span class="swatches">' + groups[f].map(function (g) {
+          return '<i style="background:' + g.c + '" title="Project ' + pad(g.i + 1) + '" aria-hidden="true"></i>';
+        }).join('') + '</span>' + esc(FAM[f].label) + '</li>';
       }).join('');
     }
 
@@ -197,27 +220,33 @@
     var h = p.images.hero;
     $('#p-hero').innerHTML = media(h, 'wide') + (!h.src && !h.html ? '<p class="media-cap label" style="margin-top:10px">Fig. 1 &mdash; [Caption]</p>' : '');
 
+    $('#p-kpis').style.setProperty('--n', Math.min(4, Math.max(1, p.metrics.length)));
     $('#p-kpis').innerHTML = p.metrics.map(function (m) {
-      return '<li><strong>' + esc(m.value) + '</strong><span>' + esc(m.label) + '</span></li>';
+      return '<li><strong' + (m.value.length > 6 ? ' class="long"' : '') + '>' + esc(m.value) + '</strong><span>' + esc(m.label) + '</span></li>';
     }).join('');
 
-    var approach = p.approach.map(function (t) { return '<p class="copy">' + esc(t) + '</p>'; }).join('');
+    // approach items: a string is a paragraph; an array is a bullet list
+    var approach = p.approach.map(function (t) {
+      if (Array.isArray(t)) return '<ul class="copy-list">' + t.map(function (li) { return '<li>' + rich(li) + '</li>'; }).join('') + '</ul>';
+      return '<p class="copy">' + rich(t) + '</p>';
+    }).join('');
     $('#p-main').innerHTML =
       '<div><h2>The problem</h2><p class="problem">' + esc(p.problem) + '</p>' +
         (p.context ? '<p class="context">' + esc(p.context) + '</p>' : '') + '</div>' +
       (p.scope ? '<div><h2>Scope</h2><ul class="scope">' + p.scope.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '') +
       '<div><h2>The approach</h2>' + approach +
-        '<div class="pair">' + media(p.images.approach[0], 'r43') + media(p.images.approach[1], 'r43') + '</div></div>' +
+        approachMedia(p.images.approach) + '</div>' +
       '<div><h2>What it left behind</h2><p class="copy">' + esc(p.output) + '</p>' +
-        '<div class="single">' + media(p.images.output, 'r169') + '</div></div>';
+        (p.images.output ? '<div class="single">' + media(p.images.output, 'r169') + '</div>' : '') + '</div>';
 
     var strong = topTwo(p.scores);
     $('#p-side').innerHTML =
       '<p class="label">Sutra profile</p>' + radar(p.scores) +
-      '<p class="note">Strongest: ' + esc(strong[0]) + ', ' + esc(strong[1]) + '. Numbers refer to the six sutras on the homepage.</p>' +
+      '<p class="note">' + esc(strongLine(p.scores)) + '. Numbers refer to the six sutras on the homepage.</p>' +
       (p.tools ? '<div class="side-tools"><p class="label">Tools and methods</p><ul class="chips">' + p.tools.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '');
 
     var nb = p.beats.length;
+    if (!nb) { var bb = $('.beats-block'); if (bb) bb.style.display = 'none'; }
     $('#beats-title').textContent = (['No', 'One', 'Two', 'Three', 'Four'][nb] || nb) + (nb === 1 ? ' moment' : ' moments') + ' where the method mattered.';
     $('#p-beats').innerHTML = p.beats.map(function (b) {
       var s = SUTRAS[b.sutra - 1];
