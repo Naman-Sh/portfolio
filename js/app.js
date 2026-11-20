@@ -29,6 +29,7 @@
     return 'work';
   }
   function accent(p) {
+    if (p.accent) return p.accent;   // explicit per-project colour wins
     var f = familyOf(p);
     var mates = ALL.filter(function (q) { return familyOf(q) === f; });
     var i = Math.max(0, mates.indexOf(p));
@@ -71,6 +72,11 @@
   /* ---------- images: real file or labelled placeholder ---------- */
   function media(spec, frameClass) {
     spec = spec || { src: '', alt: 'Image' };
+    if (spec.html) {
+      // Live HTML graphic (self-contained page, sandboxed: scripts only)
+      return '<figure class="media"><div class="frame ' + frameClass + ' live"><iframe src="' + esc(spec.html) + '" title="' + esc(spec.alt) + '" loading="lazy" sandbox="allow-scripts" scrolling="no"></iframe></div>' +
+        (spec.caption ? '<figcaption>' + esc(spec.caption) + '</figcaption>' : '') + '</figure>';
+    }
     if (spec.src) {
       return '<figure class="media"><div class="frame ' + frameClass + '"><img src="' + esc(spec.src) + '" alt="' + esc(spec.alt) + '" loading="lazy"></div>' +
         (spec.caption ? '<figcaption>' + esc(spec.caption) + '</figcaption>' : '') + '</figure>';
@@ -189,7 +195,7 @@
       '</dl>';
 
     var h = p.images.hero;
-    $('#p-hero').innerHTML = media(h, 'wide') + (!h.src ? '<p class="media-cap label" style="margin-top:10px">Fig. 1 &mdash; [Caption]</p>' : '');
+    $('#p-hero').innerHTML = media(h, 'wide') + (!h.src && !h.html ? '<p class="media-cap label" style="margin-top:10px">Fig. 1 &mdash; [Caption]</p>' : '');
 
     $('#p-kpis').innerHTML = p.metrics.map(function (m) {
       return '<li><strong>' + esc(m.value) + '</strong><span>' + esc(m.label) + '</span></li>';
@@ -211,6 +217,8 @@
       '<p class="note">Strongest: ' + esc(strong[0]) + ', ' + esc(strong[1]) + '. Numbers refer to the six sutras on the homepage.</p>' +
       (p.tools ? '<div class="side-tools"><p class="label">Tools and methods</p><ul class="chips">' + p.tools.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '');
 
+    var nb = p.beats.length;
+    $('#beats-title').textContent = (['No', 'One', 'Two', 'Three', 'Four'][nb] || nb) + (nb === 1 ? ' moment' : ' moments') + ' where the method mattered.';
     $('#p-beats').innerHTML = p.beats.map(function (b) {
       var s = SUTRAS[b.sutra - 1];
       return '<li class="beat">' +

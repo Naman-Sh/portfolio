@@ -70,46 +70,47 @@ window.SUTRAS = [
   var P = [];
 
   P.push({
-    slug: 'property-disposition', order: 1, show: true, type: 'Work',
-    title: 'Reforming the City-Owned Property Sales Program',
-    year: 'Jul 2024 \u2013 present',
+    slug: 'property-disposition', order: 1, show: true, type: 'Work', accent: '#C6F432',
+    title: 'Reforming Trenton’s City-Owned Property Sales',
+    year: 'Jul 2024 – present',
     org: 'City of Trenton, via the Bloomberg Center for Cities at Harvard University',
     position: 'Innovation Lead, Office of the Mayor',
-    summary: 'Converted an ad hoc property disposition program into a repeatable, rules-based engine for neighborhood redevelopment, building the city\u2019s innovation capability from the ground up.',
-    role: 'Project Lead', when: 'Jul 2024 \u2013 present', where: 'Trenton, NJ', team: 'Partner: Real Estate division',
+    summary: 'Converted an ad hoc property disposition program into a repeatable, rules-based engine for neighborhood redevelopment, building the city’s innovation capability from the ground up.',
+    role: 'Project Lead', when: 'Jul 2024 – present', where: 'Trenton, NJ', team: 'Partner: Real Estate division',
     context: 'Trenton has 91,500 residents and a $280 million annual operating budget. As a municipal government, it had no dedicated data or innovation officer.',
     scope: [
-      'Vacant property disposition for neighborhood redevelopment',
-      'Redevelopment compliance',
-      'Land bank feasibility',
-      'AI technology procurement',
-      'Innovation grants',
-      'University partnerships'
+      'Affordable access to Trenton residents to buy city-owned vacant homes',
+      'A rules-based program: process maps, SOPs and progress monitoring',
+      'Automated workflows to close capacity gaps and standardize operations'
     ],
     metrics: [
       { value: '12x',  label: 'Growth in annual city-owned property sales' },
       { value: '150+', label: 'Properties sold since January 2026, up from about 12 a year' },
-      { value: '580',  label: 'Applications in one month, versus 400 over the prior five-month cycle' },
+      { value: '580',  label: 'Applications in one month, versus an average of 80 previously' },
       { value: '$75K', label: 'Saved annually on application intake and processing' }
     ],
     homeNote: 'A four-pillar framework (Data, Processes, Applications, Governance) turned discretionary sales into a rules-based engine.',
-    problem: 'City-owned property sales ran on ad hoc decisions: about 12 sales a year, 400 applications over a five-month cycle, and discretionary calls on who got what. With no data or innovation officer, there was no system to fix it.',
+    problem: 'City-owned property sales ran on discretion, not design. About 80 applications arrived every month, yet the program converted only one into a sale, and no explicit rules governed who received what. With no data or innovation officer, no one owned the fix.',
     approach: [
-      'I led a redesign of the sales program around four pillars: Data, Processes, Applications and Governance.',
-      'Before buying anything, I validated user needs with personas, process maps and need-feature matrices, then tested no-cost minimum viable products (MVPs). That saved $75K annually on application intake and processing.',
-      'Multi-stakeholder workshops produced the process maps and a standard operating procedure (SOP) with transparent pricing and applicant-priority rubrics, replacing discretionary decisions with rules-based criteria.'
+      'I led a redesign of the sales program around four pillars. Data: a centralized geospatial platform gave one view of every city-owned property. Processes: mapped workflows and a standard operating procedure replaced case-by-case handling. Applications: a streamlined intake reduced the effort and cost of processing. Governance: transparent pricing and applicant-priority rubrics replaced discretion with explicit rules.',
+      'Multi-stakeholder workshops mapped how sales actually worked and redesigned it. The process maps they produced replaced discretionary decisions with rules-based criteria.',
+      'Before buying anything, I validated user needs with personas and need-feature matrices, then tested no-cost minimum viable products (MVPs). The results shaped a standard operating procedure (SOP) with transparent pricing and applicant-priority rubrics, and saved $75K annually on application intake and processing.'
     ],
-    output: 'A repeatable, rules-based property disposition engine: a centralized geospatial data platform, automated processes, and an SOP with transparent pricing and applicant-priority rubrics. It also built the city\u2019s innovation capability from the ground up.',
+    output: 'A repeatable, rules-based property disposition engine: a centralized geospatial data platform, automated processes, and an SOP with transparent pricing and applicant-priority rubrics. It also built the city’s innovation capability from the ground up.',
     tools: ['Geospatial property data platform', 'Process mapping', 'User personas', 'Agile prototyping', 'Geospatial analysis', 'Generative AI', 'Dashboards'],
-    scores: [3, 4, 4, 3, 3, 3],
+    scores: [4, 4, 4, 3, 3, 2],
     beats: [
-      { sutra: 2, change: 'Built personas, process maps and need-feature matrices to validate user needs before designing anything.' },
+      { sutra: 1, change: 'Co-designed the process with the staff who run it, so the new rules work in practice.' },
+      { sutra: 2, change: 'Profiled applicants and staff through personas and need-feature matrices before designing anything.' },
       { sutra: 3, change: 'Tested no-cost MVPs before any purchase, saving $75K annually on application intake and processing.' }
     ],
     images: {
-      hero: ph('Hero: map of properties sold, or the property sales dashboard'),
-      approach: [ph('The old, ad hoc process'), ph('The new rules-based process map')],
-      output: ph('Dashboard or standard operating procedure')
+      hero:     { html: 'assets/graphics/property-disposition/hero.html', alt: 'Animated hero: the same rules applied to every applicant', caption: '' },
+      approach: [
+        { html: 'assets/graphics/property-disposition/approach-1.html', alt: 'The four-pillar framework: Data, Processes, Applications, Governance', caption: '' },
+        { html: 'assets/graphics/property-disposition/approach-2.html', alt: 'Animated swimlane of the property purchase SOP: discretion replaced by rules', caption: '' }
+      ],
+      output:   { html: 'assets/graphics/property-disposition/output.html', alt: 'Results to date', caption: '' }
     }
   });
 
