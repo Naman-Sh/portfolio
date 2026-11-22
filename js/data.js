@@ -8,7 +8,19 @@
 
 window.SITE = {
   name: 'Naman Sharma',
-  email: 'namansharma.iitr@gmail.com'
+  email: 'namansharma.iitr@gmail.com',
+  /* Homepage recognition strip (3 cards). kind: 'video' | 'press' | 'post'.
+     thumb: path to a local image (e.g. 'assets/press/name.jpg'); if missing or broken, a styled tile is shown.
+     Leave url empty to show a placeholder card. */
+  recognition: [
+    { kind: 'video', outlet: 'YouTube', title: 'MIT $100K Competition',
+      url: 'https://youtu.be/SSekvkT2WDA?t=426',
+      thumb: 'https://img.youtube.com/vi/SSekvkT2WDA/hqdefault.jpg', date: '' },
+    { kind: 'press', outlet: 'StateTech Magazine', title: 'Smart Cities Connect 2026: Cities Test Small Before Scaling AI and Data Projects',
+      url: 'https://statetechmagazine.com/article/2026/10/smart-cities-connect-2026-cities-test-small-scaling-ai-and-data-projects',
+      thumb: '', date: 'Oct 2026' },
+    { kind: 'post', outlet: '', title: '', url: '', thumb: '', date: '' }
+  ],
 };
 
 /* Two-level colour: the project's TYPE picks the colour family, and each project in
