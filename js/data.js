@@ -18,7 +18,7 @@ window.SITE = {
       thumb: 'https://img.youtube.com/vi/SSekvkT2WDA/hqdefault.jpg', date: '' },
     { kind: 'press', outlet: 'StateTech Magazine', title: 'Smart Cities Connect 2026: Cities Test Small Before Scaling AI and Data Projects',
       url: 'https://statetechmagazine.com/article/2026/10/smart-cities-connect-2026-cities-test-small-scaling-ai-and-data-projects',
-      thumb: '', date: 'Oct 2026' },
+      thumb: 'assets/press/statetech-smart-cities-connect.jpg', date: 'Oct 2026' },
     { kind: 'post', outlet: '', title: '', url: '', thumb: '', date: '' }
   ],
 };
@@ -51,6 +51,7 @@ window.SUTRAS = [
 ];
 
 /* ---------- PROJECTS ----------
+   press: optional list of {kind, outlet, title, url, thumb, date}; 1-2 show in the sidebar, 3+ as a strip.
    scores: depth each sutra shaped the project, 0 to 4, in sutra order (01 to 06).
            These are illustrative placeholders. Replace with your own ratings.
    beats:  the one or two moments a sutra changed the course. sutra = 1 to 6.
@@ -103,7 +104,7 @@ window.SUTRAS = [
     ],
     metrics: [
       { value: '12x',  label: 'Growth in annual city-owned property sales' },
-      { value: '150+', label: 'Properties sold since January 2026, up from about 12 a year' },
+      { value: '150+', label: 'Properties sold since July 2025, up from about 12 a year' },
       { value: '580',  label: 'Applications in one month, versus an average of 80 previously' },
       { value: '$75K', label: 'Saved annually on application intake and processing' }
     ],
@@ -117,6 +118,10 @@ window.SUTRAS = [
     output: 'A repeatable, rules-based property disposition engine: a centralized geospatial data platform, automated processes, and an SOP with transparent pricing and applicant-priority rubrics. It also built the city’s innovation capability from the ground up.',
     tools: ['Geospatial property data platform', 'Process mapping', 'User personas', 'Agile prototyping', 'Geospatial analysis', 'Generative AI', 'Dashboards'],
     scores: [4, 4, 4, 3, 3, 2],
+    press: [
+      { kind: 'press', outlet: 'City of Trenton', title: 'City of Trenton press release',
+        url: 'https://www.trentonnj.org/m/newsflash/Home/Detail/1604', thumb: '', date: '' }
+    ],
     beats: [
       { sutra: 1, change: 'Co-designed the process with the staff who run it, so the new rules work in practice.' },
       { sutra: 2, change: 'Profiled applicants and staff through personas and need-feature matrices before designing anything.' },
@@ -883,7 +888,7 @@ window.SUTRAS = [
       "The spokes, the program owners, use these to execute their programs, experiment and learn as they go, and report what they learn back to the hub, which turns each lesson into an improvement across city hall. Three programs have come onboard since: property demolitions, implementation of the Abandoned Properties Rehabilitation Act, and property sales RFPs. For each, I assessed the team\u2019s data and process needs, then managed the vendor through build, testing, QA/QC approval, deployment and support. I also manage procurement of AI tools for abandoned property identification and tree mapping, projecting $338K in net labor savings ($400K of avoided effort against $62K of cost).",
       "To extend the program beyond city hall, I applied open innovation principles and invited NYU CUSP to build on our platform a redevelopment compliance monitoring solution. It tracks redevelopment activity across every city-sold property and flags those missing deadlines, augmenting the city\u2019s capacity to monitor and enforce."
     ],
-    "output": "A centralized geospatial data and workflow platform, a hub-and-spoke model in which 3 housing programs execute, learn and feed improvements back to city hall, and a projected net saving of $338K. It is the data foundation under the city-owned property sales program, which has sold 150+ properties since January 2026, and it gives a city with no data officer a capability that outlasts any one person.",
+    "output": "A centralized geospatial data and workflow platform, a hub-and-spoke model in which 3 housing programs execute, learn and feed improvements back to city hall, and a projected net saving of $338K. It is the data foundation under the city-owned property sales program, which has sold 150+ properties since July 2025, and it gives a city with no data officer a capability that outlasts any one person.",
     "tools": [
       "Geospatial data platform",
       "Needs assessment",

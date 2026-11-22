@@ -329,3 +329,12 @@ a.rc:hover, a.rc:focus-visible { border-color: var(--accent); transform: transla
 .rc-empty .rc-kind { color: var(--muted); }
 .rc-empty .rc-title { color: var(--muted); }
 @media (max-width: 880px) { .rcards { grid-template-columns: 1fr; } }
+
+/* recognition on project pages */
+.side-press { width: 100%; display: flex; flex-direction: column; gap: 12px; padding-top: 16px; margin-top: 4px; border-top: 1px solid var(--line); }
+.side-press .rc-body { padding: 14px 16px 16px; gap: 8px; }
+.side-press .rc-title { font-size: 18px; }
+.side-press .rc-play { width: 36px; height: 36px; left: 10px; bottom: 10px; }
+.side-press .rc-play::after { left: 14px; top: 10px; border-left-width: 11px; border-top-width: 7px; border-bottom-width: 7px; }
+.p-after .press-h { margin-top: 48px; }
+.p-after .rcards { margin-top: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }

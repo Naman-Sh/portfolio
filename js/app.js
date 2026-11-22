@@ -115,27 +115,30 @@
     if (yr) yr.textContent = new Date().getFullYear();
   }
 
+  /* ---------- recognition card (press / video / post) ---------- */
+  var RKIND = { video: 'Video', press: 'Press', post: 'Post' };
+  function rcHtml(r) {
+    if (!r.url) {
+      return '<div class="rc rc-empty"><div class="rc-thumb"><span>Coming soon</span></div>' +
+        '<div class="rc-body"><span class="rc-kind">Placeholder</span><p class="rc-title">Next feature goes here</p></div></div>';
+    }
+    var thumb = r.thumb
+      ? '<img src="' + esc(r.thumb) + '" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'nothumb\');this.remove()">'
+      : '';
+    return '<a class="rc" href="' + esc(r.url) + '" target="_blank" rel="noopener">' +
+      '<div class="rc-thumb' + (r.thumb ? '' : ' nothumb') + '" data-kind="' + esc(r.kind) + '">' + thumb +
+      '<span class="rc-fallback">' + esc(r.outlet) + '</span>' +
+      (r.kind === 'video' ? '<span class="rc-play" aria-hidden="true"></span>' : '') + '</div>' +
+      '<div class="rc-body"><span class="rc-kind">' + esc(RKIND[r.kind] || 'Link') + ' &middot; ' + esc(r.outlet) + (r.date ? ' &middot; ' + esc(r.date) : '') + '</span>' +
+      '<p class="rc-title">' + esc(r.title) + '</p><span class="rc-go">' + (r.kind === 'video' ? 'Watch' : 'Read') + ' &#8599;</span></div></a>';
+  }
+
   /* ---------- HOME ---------- */
   function initHome() {
     // Recognition cards
     var rl = $('#recognition-list');
     if (rl && SITE.recognition) {
-      var KIND = { video: 'Video', press: 'Press', post: 'Post' };
-      rl.innerHTML = SITE.recognition.map(function (r) {
-        if (!r.url) {
-          return '<li><div class="rc rc-empty"><div class="rc-thumb"><span>Coming soon</span></div>' +
-            '<div class="rc-body"><span class="rc-kind">Placeholder</span><p class="rc-title">Next feature goes here</p></div></div></li>';
-        }
-        var thumb = r.thumb
-          ? '<img src="' + esc(r.thumb) + '" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'nothumb\');this.remove()">'
-          : '';
-        return '<li><a class="rc" href="' + esc(r.url) + '" target="_blank" rel="noopener">' +
-          '<div class="rc-thumb' + (r.thumb ? '' : ' nothumb') + '" data-kind="' + esc(r.kind) + '">' + thumb +
-          '<span class="rc-fallback">' + esc(r.outlet) + '</span>' +
-          (r.kind === 'video' ? '<span class="rc-play" aria-hidden="true"></span>' : '') + '</div>' +
-          '<div class="rc-body"><span class="rc-kind">' + esc(KIND[r.kind] || 'Link') + ' &middot; ' + esc(r.outlet) + (r.date ? ' &middot; ' + esc(r.date) : '') + '</span>' +
-          '<p class="rc-title">' + esc(r.title) + '</p><span class="rc-go">' + (r.kind === 'video' ? 'Watch' : 'Read') + ' &#8599;</span></div></a></li>';
-      }).join('');
+      rl.innerHTML = SITE.recognition.map(function (r) { return '<li>' + rcHtml(r) + '</li>'; }).join('');
     }
 
     // Sutras
@@ -262,7 +265,11 @@
     $('#p-side').innerHTML =
       '<p class="label">Sutra profile</p>' + radar(p.scores) +
       '<p class="note">' + esc(strongLine(p.scores)) + '. Numbers refer to the six sutras on the homepage.</p>' +
-      (p.tools ? '<div class="side-tools"><p class="label">Tools and methods</p><ul class="chips">' + p.tools.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '');
+      (p.tools ? '<div class="side-tools"><p class="label">Tools and methods</p><ul class="chips">' + p.tools.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div>' : '') +
+      (p.press && p.press.length && p.press.length < 3 ? '<div class="side-press"><p class="label">Recognition</p>' + p.press.map(rcHtml).join('') + '</div>' : '');
+    if (p.press && p.press.length >= 3) {
+      $('#p-after').insertAdjacentHTML('beforeend', '<h2 class="press-h">Recognition</h2><ul class="rcards">' + p.press.map(function (r) { return '<li>' + rcHtml(r) + '</li>'; }).join('') + '</ul>');
+    }
 
     var nb = p.beats.length;
     if (!nb) { var bb = $('.beats-block'); if (bb) bb.style.display = 'none'; }
